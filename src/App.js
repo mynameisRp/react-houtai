@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {HashRouter as Router,  Redirect, Switch, Route} from "react-router-dom"
+import {basicRoute}   from "routers"
+import Views from "./views"
+import ForgetPassword from "components/login/bogeadmin"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+class App extends React.Component{
+  render(){
+    return (
+      <Router>
+        <Switch>
+          <Route path="/admin" render={()=>{
+            return <Views/>
+          }} />
+          <Route path="/forgetPassword" component={ForgetPassword} />
+            {
+              basicRoute.map((item, index) => (
+                <Route path={item.pathname} key={index} render={()=>{
+                  return <item.component/>
+                }} />
+              ))
+            }
+          <Redirect from="/" to="/login" />
+          <Redirect from="**" to="/404" />
+        </Switch>
+      </Router>
   );
+  }
 }
+
 
 export default App;
