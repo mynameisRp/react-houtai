@@ -8,13 +8,13 @@ const { Header} = Layout;
 
 
 const menu = (
-  <Menu>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-        退出登录    
-      </a>
-    </Menu.Item>
-  </Menu>
+    <Menu>
+        <Menu.Item>
+        <Link rel="noopener noreferrer" to="/login" >
+            退出登录    
+        </Link>
+        </Menu.Item>
+    </Menu>
 );
 
 class TopNav extends React.Component{
